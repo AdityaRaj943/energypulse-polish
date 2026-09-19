@@ -34,6 +34,7 @@ export function ImportDialog() {
       try {
         const s = await importFile(file);
         setSummary(s);
+        toast.success(`Successfully imported ${s.records} records from ${s.servers} servers.`);
       } catch (e) {
         if (e instanceof ImportValidationError) {
           setMissing(e.missing);
