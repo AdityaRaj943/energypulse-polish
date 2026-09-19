@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ServerDetail } from "@/components/energy/FeaturePage";
+export const Route = createFileRoute("/servers/$serverId")({ head: ({ params }) => ({ meta: [{ title: `${params.serverId} | EnergyPulse` }, { name: "description", content: `Energy detail for ${params.serverId}.` }, { property: "og:title", content: `${params.serverId} | EnergyPulse` }, { property: "og:description", content: `Energy detail for ${params.serverId}.` }] }), component: () => <ServerDetail serverId={Route.useParams().serverId} /> });

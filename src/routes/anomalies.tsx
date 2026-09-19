@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { FeaturePage } from "@/components/energy/FeaturePage";
+export const Route = createFileRoute("/anomalies")({ head: () => ({ meta: [{ title: "Anomaly detection | EnergyPulse" }, { name: "description", content: "Review unusual server power behavior and alerts." }, { property: "og:title", content: "Anomaly detection | EnergyPulse" }, { property: "og:description", content: "Review unusual server power behavior and alerts." }] }), component: () => <FeaturePage kind="anomalies" /> });
