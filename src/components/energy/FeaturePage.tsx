@@ -21,7 +21,7 @@ const titles: Record<FeatureKind, [string, string]> = {
   help: ["Help", "Understand the energy fields and the monitoring workflow."],
 };
 
-const bodies: Record<FeatureKind, () => JSX.Element> = {
+const bodies: Record<FeatureKind, () => React.ReactElement> = {
   monitoring: MonitoringPage,
   analytics: PowerAnalyticsPage,
   prediction: PredictionPage,
