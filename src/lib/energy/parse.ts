@@ -92,6 +92,7 @@ export function rowsToRecords(rows: RawRow[]): ServerRecord[] {
       return;
     }
     const statusRaw = str(get("Anomaly_Status")).toLowerCase();
+    const isAnomaly = statusRaw.startsWith("anom") || ["1", "true", "yes", "y"].includes(statusRaw);
     out.push({
       id: i,
       timestamp: ts,
