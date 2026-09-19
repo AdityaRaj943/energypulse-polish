@@ -36,11 +36,33 @@ const parseDate = (v: unknown): Date | null => {
 /** Normalise header names so "CPU Usage %" and "cpu_usage_%" both match. */
 const normKey = (k: string) => k.toLowerCase().replace(/[\s\-]+/g, "_").replace(/%/g, "%").trim();
 
+/** Accepted alternative header names (normalised) for canonical columns. */
+const ALIASES: Record<string, string[]> = {
+  timestamp: ["date", "datetime", "date_time", "time"],
+  server_id: ["server", "serverid", "server_name", "host"],
+  "cpu_usage_%": ["cpu_usage", "cpu", "cpu_%"],
+  "memory_usage_%": ["memory_usage", "memory", "mem_usage_%", "memory_%"],
+  "disk_usage_%": ["disk_usage", "disk", "disk_%"],
+  network_usage_mbps: ["network_usage", "network", "network_mbps"],
+  estimated_power_w: ["estimated_power", "power_w", "power"],
+  anomaly_status: ["anomaly", "status", "is_anomaly"],
+  predicted_power_w: ["predicted_power"],
+};
+
+/** Resolve a canonical column name to the normalised header actually present. */
+const resolveKey = (headers: Set<string>, name: string): string | undefined => {
+  const n = normKey(name);
+  if (headers.has(n)) return n;
+  return ALIASES[n]?.find((a) => headers.has(a));
+};
+
 function buildLookup(row: RawRow) {
   const map = new Map<string, string>();
   for (const k of Object.keys(row)) map.set(normKey(k), k);
+  const headers = new Set(map.keys());
   return (name: string) => {
-    const k = map.get(normKey(name));
+    const resolved = resolveKey(headers, name);
+    const k = resolved === undefined ? undefined : map.get(resolved);
     return k === undefined ? undefined : row[k];
   };
 }
