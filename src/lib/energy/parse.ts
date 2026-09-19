@@ -105,7 +105,7 @@ export function rowsToRecords(rows: RawRow[]): ServerRecord[] {
       network: num(get("Network_Usage_Mbps")) ?? 0,
       power,
       anomalyScore: num(get("Anomaly_Score")),
-      anomalyStatus: statusRaw.startsWith("anom") ? "Anomaly" : "Normal",
+      anomalyStatus: isAnomaly ? "Anomaly" : "Normal",
       alert: str(get("Alert")),
       predictedPower: num(get("Predicted_Power_W")),
       deviation: num(get("Power_Deviation_W")),
