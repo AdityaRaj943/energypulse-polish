@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { FeaturePage } from "@/components/energy/FeaturePage";
+export const Route = createFileRoute("/help")({ head: () => ({ meta: [{ title: "Help | EnergyPulse" }, { name: "description", content: "Learn how EnergyPulse server energy monitoring works." }, { property: "og:title", content: "Help | EnergyPulse" }, { property: "og:description", content: "Learn how EnergyPulse server energy monitoring works." }] }), component: () => <FeaturePage kind="help" /> });
