@@ -1,3 +1,4 @@
+import type React from "react";
 import { AppShell, PageHeader } from "@/components/layout/AppShell";
 import { AnomaliesPage } from "./pages/AnomaliesPage";
 import { HelpPage, MonitoringPage, SettingsPage } from "./pages/MiscPages";
