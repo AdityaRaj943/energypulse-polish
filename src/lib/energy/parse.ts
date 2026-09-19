@@ -127,7 +127,7 @@ export async function parseWorkbookFile(file: File): Promise<ServerRecord[]> {
     const candidate = XLSX.utils.sheet_to_json<RawRow>(wb.Sheets[name]!, { defval: "" });
     if (!candidate.length) continue;
     const headers = new Set(Object.keys(candidate[0]!).map(normKey));
-    if (REQUIRED_COLUMNS.every((c) => headers.has(normKey(c)))) {
+    if (REQUIRED_COLUMNS.every((c) => resolveKey(headers, c) !== undefined)) {
       rows = candidate;
       break;
     }
