@@ -72,7 +72,7 @@ export function rowsToRecords(rows: RawRow[]): ServerRecord[] {
   const firstRow = rows[0];
   if (!firstRow) throw new Error("The file contains no data rows.");
   const headers = new Set(Object.keys(firstRow).map(normKey));
-  const missing = REQUIRED_COLUMNS.filter((c) => !headers.has(normKey(c)));
+  const missing = REQUIRED_COLUMNS.filter((c) => resolveKey(headers, c) === undefined);
   if (missing.length) throw new ImportValidationError(missing);
 
   const out: ServerRecord[] = [];
