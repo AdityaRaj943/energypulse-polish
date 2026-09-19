@@ -23,7 +23,7 @@ const parseDate = (v: unknown): Date | null => {
   if (v instanceof Date) return Number.isNaN(v.getTime()) ? null : v;
   if (typeof v === "number") {
     // Excel serial date
-    const ms = Math.round((v - 25569) * 86400 * 1000);
+    const ms = Math.round((v - 25569) * 86400) * 1000;
     const d = new Date(ms);
     return Number.isNaN(d.getTime()) ? null : d;
   }
