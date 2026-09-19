@@ -10,33 +10,153 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnomaliesRouteImport } from './routes/anomalies'
+import { Route as HelpRouteImport } from './routes/help'
+import { Route as LiveMonitoringRouteImport } from './routes/live-monitoring'
+import { Route as PowerAnalyticsRouteImport } from './routes/power-analytics'
+import { Route as PowerPredictionRouteImport } from './routes/power-prediction'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as ServersRouteImport } from './routes/servers'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ServersServerIdRouteImport } from './routes/servers.$serverId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnomaliesRoute = AnomaliesRouteImport.update({
+  id: '/anomalies',
+  path: '/anomalies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiveMonitoringRoute = LiveMonitoringRouteImport.update({
+  id: '/live-monitoring',
+  path: '/live-monitoring',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PowerAnalyticsRoute = PowerAnalyticsRouteImport.update({
+  id: '/power-analytics',
+  path: '/power-analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PowerPredictionRoute = PowerPredictionRouteImport.update({
+  id: '/power-prediction',
+  path: '/power-prediction',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServersRoute = ServersRouteImport.update({
+  id: '/servers',
+  path: '/servers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServersServerIdRoute = ServersServerIdRouteImport.update({
+  id: '/$serverId',
+  path: '/$serverId',
+  getParentRoute: () => ServersRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/anomalies': typeof AnomaliesRoute
+  '/help': typeof HelpRoute
+  '/live-monitoring': typeof LiveMonitoringRoute
+  '/power-analytics': typeof PowerAnalyticsRoute
+  '/power-prediction': typeof PowerPredictionRoute
+  '/reports': typeof ReportsRoute
+  '/servers': typeof ServersRouteWithChildren
+  '/settings': typeof SettingsRoute
+  '/servers/$serverId': typeof ServersServerIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/anomalies': typeof AnomaliesRoute
+  '/help': typeof HelpRoute
+  '/live-monitoring': typeof LiveMonitoringRoute
+  '/power-analytics': typeof PowerAnalyticsRoute
+  '/power-prediction': typeof PowerPredictionRoute
+  '/reports': typeof ReportsRoute
+  '/servers': typeof ServersRouteWithChildren
+  '/settings': typeof SettingsRoute
+  '/servers/$serverId': typeof ServersServerIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/anomalies': typeof AnomaliesRoute
+  '/help': typeof HelpRoute
+  '/live-monitoring': typeof LiveMonitoringRoute
+  '/power-analytics': typeof PowerAnalyticsRoute
+  '/power-prediction': typeof PowerPredictionRoute
+  '/reports': typeof ReportsRoute
+  '/servers': typeof ServersRouteWithChildren
+  '/settings': typeof SettingsRoute
+  '/servers/$serverId': typeof ServersServerIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/anomalies'
+    | '/help'
+    | '/live-monitoring'
+    | '/power-analytics'
+    | '/power-prediction'
+    | '/reports'
+    | '/servers'
+    | '/settings'
+    | '/servers/$serverId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/anomalies'
+    | '/help'
+    | '/live-monitoring'
+    | '/power-analytics'
+    | '/power-prediction'
+    | '/reports'
+    | '/servers'
+    | '/settings'
+    | '/servers/$serverId'
+  id:
+    | '__root__'
+    | '/'
+    | '/anomalies'
+    | '/help'
+    | '/live-monitoring'
+    | '/power-analytics'
+    | '/power-prediction'
+    | '/reports'
+    | '/servers'
+    | '/settings'
+    | '/servers/$serverId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnomaliesRoute: typeof AnomaliesRoute
+  HelpRoute: typeof HelpRoute
+  LiveMonitoringRoute: typeof LiveMonitoringRoute
+  PowerAnalyticsRoute: typeof PowerAnalyticsRoute
+  PowerPredictionRoute: typeof PowerPredictionRoute
+  ReportsRoute: typeof ReportsRoute
+  ServersRoute: typeof ServersRouteWithChildren
+  SettingsRoute: typeof SettingsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +168,93 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anomalies': {
+      id: '/anomalies'
+      path: '/anomalies'
+      fullPath: '/anomalies'
+      preLoaderRoute: typeof AnomaliesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/live-monitoring': {
+      id: '/live-monitoring'
+      path: '/live-monitoring'
+      fullPath: '/live-monitoring'
+      preLoaderRoute: typeof LiveMonitoringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/power-analytics': {
+      id: '/power-analytics'
+      path: '/power-analytics'
+      fullPath: '/power-analytics'
+      preLoaderRoute: typeof PowerAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/power-prediction': {
+      id: '/power-prediction'
+      path: '/power-prediction'
+      fullPath: '/power-prediction'
+      preLoaderRoute: typeof PowerPredictionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servers': {
+      id: '/servers'
+      path: '/servers'
+      fullPath: '/servers'
+      preLoaderRoute: typeof ServersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servers/$serverId': {
+      id: '/servers/$serverId'
+      path: '/$serverId'
+      fullPath: '/servers/$serverId'
+      preLoaderRoute: typeof ServersServerIdRouteImport
+      parentRoute: typeof ServersRoute
+    }
   }
 }
 
+interface ServersRouteChildren {
+  ServersServerIdRoute: typeof ServersServerIdRoute
+}
+
+const ServersRouteChildren: ServersRouteChildren = {
+  ServersServerIdRoute: ServersServerIdRoute,
+}
+
+const ServersRouteWithChildren =
+  ServersRoute._addFileChildren(ServersRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnomaliesRoute: AnomaliesRoute,
+  HelpRoute: HelpRoute,
+  LiveMonitoringRoute: LiveMonitoringRoute,
+  PowerAnalyticsRoute: PowerAnalyticsRoute,
+  PowerPredictionRoute: PowerPredictionRoute,
+  ReportsRoute: ReportsRoute,
+  ServersRoute: ServersRouteWithChildren,
+  SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
